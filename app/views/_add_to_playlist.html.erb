@@ -13,6 +13,14 @@ Unless required by applicable law or agreed to in writing, software distributed
   specific language governing permissions and limitations under the License.
 ---  END LICENSE_HEADER BLOCK  ---
 %>
+<% content_for :page_scripts do %>
+  <%= javascript_include_tag 'select2.min' %>
+  <%= stylesheet_link_tag 'select2.min' %>
+  <script type="text/javascript">
+    $("#post_playlist_id").select2();
+  </script>
+<% end %>
+
 <div id="add_to_playlist_alert" class="add_to_playlist add_to_playlist_alert" style="display:none">
     <p id='add_to_playlist_result_message' style="width:100%">
     </p>

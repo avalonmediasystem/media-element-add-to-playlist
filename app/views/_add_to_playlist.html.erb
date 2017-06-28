@@ -120,12 +120,11 @@ Unless required by applicable law or agreed to in writing, software distributed
         <div class="row">
           <div class="col-sm-offset-2 col-sm-10">
         <div>
-        <%= f.submit class: 'btn btn-primary btn-xs', value: t("playlist.create.action") %>
+        <%= f.submit id: 'new_playlist_submit', class: 'btn btn-primary outline_on', value: t("playlist.create.action") %>
         </div>
           </div>
         </div>
         <% end # form_for playlist_form%>
-
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

@@ -35,6 +35,8 @@ formatAddNew = (data) ->
 
 showNewPlaylistModal = (playlistName) ->
   $('#add-playlist-modal').modal('show')
+  $('#new_playlist_submit').val('Create')
+  $('#new_playlist_submit').prop("disabled", false)
   return true
 
 select_element.select2({
@@ -50,8 +52,23 @@ select_element.select2({
         showNewPlaylistModal(getSearchTerm())
   )
 
+$('#playlist_form').submit(
+  () ->
+    if($('#playlist_title').val())
+      $('#new_playlist_submit').val('Saving...')
+      $('#new_playlist_submit').prop("disabled", true)
+      return true
+    if($('#title_error').length == 0)
+      $('#playlist_title').after('<h5 id="title_error" class="error text-danger">Name is required</h5>')
+      $('#playlist_title').parent().addClass('has-error')
+    return false
+)
+
 $("#playlist_form").bind('ajax:success',
   (event, data, status, xhr) ->
     $('#add-playlist-modal').modal('hide')
-    select_element.append(new Option(data.title, data.id.toString(), true, true)).trigger('change')
-    )
+    if (data.errors)
+      console.log(data.errors.title[0])
+    else
+      select_element.append(new Option(data.title, data.id.toString(), true, true)).trigger('change')
+  )

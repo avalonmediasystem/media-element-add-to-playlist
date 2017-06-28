@@ -34,9 +34,14 @@ formatAddNew = (data) ->
   return data.text
 
 showNewPlaylistModal = (playlistName) ->
-  $('#add-playlist-modal').modal('show')
+  #set to defaults first
   $('#new_playlist_submit').val('Create')
   $('#new_playlist_submit').prop("disabled", false)
+  $('#playlist_title').val("")
+  $('#playlist_comment').val("")
+  $('#playlist_visibility_private').prop('checked', true)
+
+  $('#add-playlist-modal').modal('show')
   return true
 
 select_element.select2({

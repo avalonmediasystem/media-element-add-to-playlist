@@ -64,7 +64,14 @@ select_element.select2({
   escapeMarkup:
     (markup) -> return markup
   matcher: matchWithNew
-  })
+  sorter: (data) ->
+    return data.sort((a, b) ->
+        if (a.text > b.text)
+            return 1
+        if (a.text < b.text)
+            return -1
+        return 0
+  )})
   .on('select2:selecting',
     (evt) ->
       choice = evt.params.args.data.text

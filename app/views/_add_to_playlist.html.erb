@@ -28,6 +28,7 @@ Unless required by applicable law or agreed to in writing, software distributed
   <% @add_playlist_item_playlists = Playlist.where(user: current_user) %>
   <span style="display:none" id='add_playlist_item_playlists_not_empty'><%= @add_playlist_item_playlists.empty? %></span>
   <% unless @add_playlist_item_playlists.empty? %>
+    <% @add_playlist_item_playlists = @add_playlist_item_playlists.sort_by(&:title) %>
     <%= form_tag do %>
       <table>
         <tr>

@@ -38,7 +38,7 @@ showNewPlaylistModal = (playlistName) ->
   #set to defaults first
   $('#new_playlist_submit').val('Create')
   $('#new_playlist_submit').prop("disabled", false)
-  $('#playlist_title').val("")
+  $('#playlist_title').val(playlistName)
   $('#playlist_comment').val("")
   $('#playlist_visibility_private').prop('checked', true)
   #remove any possible old errors

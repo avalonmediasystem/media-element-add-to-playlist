@@ -1,5 +1,6 @@
 addnew = 'Add new playlist'
 select_element = $('#post_playlist_id')
+add_success = false
 
 select_element.prepend(new Option(addnew))
 
@@ -43,9 +44,20 @@ showNewPlaylistModal = (playlistName) ->
   #remove any possible old errors
   $('#title_error').remove()
   $('#playlist_title').parent().removeClass('has-error')
-
+  add_success = false
+  #finally show
   $('#add-playlist-modal').modal('show')
   return true
+
+$('#add-playlist-modal').on('hidden.bs.modal', () ->
+    if (!add_success)
+      op = select_element.children()[1]
+      if (op)
+        newval = op.value
+      else
+        newval = -1
+      select_element.val(newval).trigger('change.select2')
+)
 
 select_element.select2({
   templateResult: formatAddNew
@@ -78,5 +90,6 @@ $("#playlist_form").bind('ajax:success',
     if (data.errors)
       console.log(data.errors.title[0])
     else
+      add_success = true
       select_element.append(new Option(data.title, data.id.toString(), true, true)).trigger('change')
   )

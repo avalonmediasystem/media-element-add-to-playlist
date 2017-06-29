@@ -40,6 +40,9 @@ showNewPlaylistModal = (playlistName) ->
   $('#playlist_title').val("")
   $('#playlist_comment').val("")
   $('#playlist_visibility_private').prop('checked', true)
+  #remove any possible old errors
+  $('#title_error').remove()
+  $('#playlist_title').parent().removeClass('has-error')
 
   $('#add-playlist-modal').modal('show')
   return true

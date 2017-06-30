@@ -5,15 +5,13 @@ add_success = false
 select_element.prepend(new Option(addnew))
 
 getSearchTerm = () ->
-  if $('.select2-search__field')[0]
-    return $('.select2-search__field')[0].value
-  return null
+  return $("#post_playlist_id").data('select2').$dropdown.find("input").val();
 
 matchWithNew = (params, data) ->
   term = params.term || ''
   term = term.toLowerCase()
   text = data.text.toLowerCase()
-  if (text.indexOf(addnew.toLowerCase()) != -1 || text.indexOf(term) != -1)
+  if (text.includes(addnew.toLowerCase()) || text.includes(term))
     return data;
   return null;
 

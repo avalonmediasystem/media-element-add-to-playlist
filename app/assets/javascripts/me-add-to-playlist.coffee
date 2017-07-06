@@ -165,7 +165,7 @@
               ).popover 'hide'
               $(this).popover 'show'
               false
-            return           
+            return
           error: (response) ->
             $('#add_marker_to_playlist_item_alert')[0].className = 'alert alert-danger add_marker_to_playlist_item_alert add_marker_to_playlist_item_alert_error'
             $('#add_marker_to_playlist_item_result_message')[0].innerHTML = response.responseJSON.message

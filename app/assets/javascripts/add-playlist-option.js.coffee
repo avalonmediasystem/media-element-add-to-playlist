@@ -12,12 +12,20 @@ matchWithNew = (params, data) ->
   term = term.toLowerCase()
   text = data.text.toLowerCase()
   if (text.includes(addnew.toLowerCase()) || text.includes(term))
-    return data;
-  return null;
+    return data
+  return null
+
+sortWithNew = (data) ->
+  return data.sort((a, b) ->
+    if (a.text < b.text || a.text == addnew)
+      return -1
+    if (a.text > b.text)
+      return 1
+    return 0)
 
 formatAddNew = (data) ->
   term = getSearchTerm() || ''
-  if (data.text.indexOf('Add new playlist') != -1 )
+  if (data.text == addnew )
     if (term != '')
       term = addnew + ' "' + term + '"'
     else
@@ -62,14 +70,8 @@ select_element.select2({
   escapeMarkup:
     (markup) -> return markup
   matcher: matchWithNew
-  sorter: (data) ->
-    return data.sort((a, b) ->
-        if (a.text > b.text)
-            return 1
-        if (a.text < b.text)
-            return -1
-        return 0
-  )})
+  sorter: sortWithNew
+  })
   .on('select2:selecting',
     (evt) ->
       choice = evt.params.args.data.text

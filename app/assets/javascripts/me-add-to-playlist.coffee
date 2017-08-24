@@ -19,7 +19,17 @@
       button.click (event) ->
         if $('#add_playlist_item_playlists_not_empty')[0].innerHTML == 'false'
           $('#playlist_item_description')[0].value = ''
-          $('#playlist_item_title').val(player.options.playlistItemDefaultTitle)
+          default_title = player.options.playlistItemDefaultTitle
+          current_span = $('li i.now-playing').parent().find('a[data-fragmentbegin]')
+          if current_span
+            re = /\s*\(.*\)$/ # duration notation at end of section title ' (2:00)'
+            structure_title = current_span.text().replace(re,'').trim()
+            parent = current_span.closest('ul').closest('li').prev()
+            while parent.length > 0
+              structure_title = parent.text().trim()+' - '+structure_title
+              parent = parent.closest('ul').closest('li').prev()
+            default_title = default_title+' - '+structure_title
+          $('#playlist_item_title').val(default_title)
           $('#playlist_item_start').val(mejs.Utility.secondsToTimeCode(player.getCurrentTime(), true))
           if $('a.current-stream').length && typeof($('a.current-stream')[0].dataset.fragmentend) != typeof(undefined)
             end_time = $('a.current-stream')[0].dataset.fragmentend

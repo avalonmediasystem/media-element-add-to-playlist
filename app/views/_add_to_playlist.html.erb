@@ -108,12 +108,16 @@ Unless required by applicable law or agreed to in writing, software distributed
           <%= label_tag nil, t("blacklight/folders/folder.visibility", scope: "helpers.label"), class: 'col-sm-2 control-label' %>
           <div class="col-sm-10">
             <label class="radio-inline">
-        <%= f.radio_button(:visibility, Playlist::PUBLIC) %>
-        <%= human_friendly_visibility Playlist::PUBLIC %>
+              <%= f.radio_button(:visibility, Playlist::PUBLIC) %>
+              <%= human_friendly_visibility Playlist::PUBLIC %>
             </label>
             <label class="radio-inline">
-        <%= f.radio_button(:visibility, Playlist::PRIVATE) %>
-        <%= human_friendly_visibility Playlist::PRIVATE %>
+              <%= f.radio_button(:visibility, Playlist::PRIVATE) %>
+              <%= human_friendly_visibility Playlist::PRIVATE %>
+            </label>
+            <label class="radio-inline">
+              <%= f.radio_button(:visibility, Playlist::PRIVATE_WITH_TOKEN) %>
+              <%= human_friendly_visibility Playlist::PRIVATE_WITH_TOKEN %>
             </label>
           </div>
         </div>

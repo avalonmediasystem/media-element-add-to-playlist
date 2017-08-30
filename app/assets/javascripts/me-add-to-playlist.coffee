@@ -22,8 +22,9 @@
           default_title = player.options.playlistItemDefaultTitle
           current_span = $('li i.now-playing').parent().find('a[data-fragmentbegin]')
           if current_span
-            re = /\s*\(.*\)$/ # duration notation at end of section title ' (2:00)'
-            structure_title = current_span.text().replace(re,'').trim()
+            re1 = /^\s*\d\.\s*/ # index number in front of section title '1. '
+            re2 = /\s*\(.*\)$/  # duration notation at end of section title ' (2:00)'
+            structure_title = current_span.text().replace(re1,'').replace(re2,'').trim()
             parent = current_span.closest('ul').closest('li').prev()
             while parent.length > 0
               structure_title = parent.text().trim()+' - '+structure_title

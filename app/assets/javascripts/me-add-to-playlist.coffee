@@ -27,9 +27,9 @@
             structure_title = current_span.text().replace(re1,'').replace(re2,'').trim()
             parent = current_span.closest('ul').closest('li').prev()
             while parent.length > 0
-              structure_title = parent.text().trim()+' - '+structure_title
+              structure_title = [parent.text().trim(), structure_title].filter(String).join(' - ')
               parent = parent.closest('ul').closest('li').prev()
-            default_title = default_title+' - '+structure_title
+            default_title = [default_title, structure_title].filter(String).join(' - ')
           $('#playlist_item_title').val(default_title)
           $('#playlist_item_start').val(mejs.Utility.secondsToTimeCode(player.getCurrentTime(), true))
           if $('a.current-stream').length && typeof($('a.current-stream')[0].dataset.fragmentend) != typeof(undefined)

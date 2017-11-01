@@ -53,11 +53,11 @@
 }
 
 .mejs-controls .mejs-add-to-playlist button {
-  background: transparent url(<%= image_path 'add_to_playlist_icon.svg' %>) no-repeat;
+  background: transparent image-url('add_to_playlist_icon.svg') no-repeat;
 }
 
 .mejs-controls .mejs-add-marker-to-playlist-item button {
-  background: transparent url(<%= image_path 'add_bookmark.svg' %>) no-repeat;
+  background: transparent image-url('add_bookmark.svg') no-repeat;
 }
 
 .add_to_playlist_alert, .add_marker_to_playlist_item_alert {

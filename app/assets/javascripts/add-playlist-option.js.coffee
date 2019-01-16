@@ -5,7 +5,7 @@ add_success = false
 select_element.prepend(new Option(addnew))
 
 getSearchTerm = () ->
-  return $("#post_playlist_id").data('select2').$dropdown.find("input").val();
+  return $('span.select2-search--dropdown input').val();
 
 matchWithNew = (params, data) ->
   term = params.term || ''

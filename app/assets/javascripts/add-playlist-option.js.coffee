@@ -17,7 +17,9 @@ matchWithNew = (params, data) ->
 
 sortWithNew = (data) ->
   return data.sort((a, b) ->
-    if (a.text < b.text || a.text == addnew)
+    if (b.text.trim() == addnew)
+      return 1
+    if (a.text < b.text || a.text.trim() == addnew)
       return -1
     if (a.text > b.text)
       return 1

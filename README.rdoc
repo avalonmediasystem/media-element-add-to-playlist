@@ -1,3 +1,4 @@
 = MediaElementAddToPlaylist
 
+Adds an "Add to playlist" icon to mediaelement.js player.
 This project rocks and uses MIT-LICENSE.
